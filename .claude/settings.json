@@ -1,0 +1,43 @@
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
+    "CLAUDE_CODE_DISABLE_TERMINAL_TITLE": "1",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "cleanupPeriodDays": 2,
+  "disableBypassPermissionsMode": true,
+
+  "enabledMcpjsonServers": [],
+  "disableAllHooks": true,
+  "respectGitignore": true,
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": false,
+    "allowUnsandboxedCommands": false,
+    "enableWeakerNestedSandbox": false,
+    "excludedCommands": ["docker"]
+  },
+  "permissions": {
+    "defaultMode": "default",
+    "deny": [
+      "Read(**/*.env*)",
+      "Read(**/.env)",
+      "Bash(sudo:*)",
+      "Bash(su:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ssh:*)",
+      "Bash(rm:*)",
+      "Read(**/secrets/**)",
+      "Read(**/*credentials*)",
+      "Read(**/*secret*)",
+      "Read(~/.ssh/**)",
+      "Read(~/.gnupg/**)",
+      "Read(~/.aws/**)",
+      "Read(~/.claude/settings.json)",
+      "Read(**/claude-code/managed-settings.json)"
+    ],
+    "allow": ["Bash(npm run test)", "Bash(git add:*)", "Bash(git diff:*)"],
+    "ask": ["Bash(gh pr create:*)", "Bash(git commit:*)"]
+  }
+}

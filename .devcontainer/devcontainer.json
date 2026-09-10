@@ -1,0 +1,26 @@
+{
+  "name": "Portfolio",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {
+      "moby": false
+    },
+    "ghcr.io/stu-bell/devcontainer-features/claude-code:0.1.0": {}
+  },
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/.claude/settings.json",
+      "target": "/etc/claude-code/managed-settings.json",
+      "type": "bind"
+    }
+  ],
+  // Set pnpm store inside container home, not project folder
+  "remoteEnv": {
+    "PNPM_STORE_DIR": "/home/node/.pnpm-store"
+  },
+  "postStartCommand": "sudo bash ${containerWorkspaceFolder}/.devcontainer/init-firewall.sh",
+  "remoteUser": "node"
+}
